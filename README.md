@@ -17,4 +17,5 @@ Add in twitter API for fab\
 Add in results points calculations\
 Add join command\
 Add standings command\
-Add fixture list command
+Add fixture list command\
+Probably some other commands I can't think of right now
