@@ -26,18 +26,28 @@ async def on_ready():
 async def on_message(message):
     if message.author == bot.user:
         return
-
-    msg = message.content
+    # if message.channel.id != 747178040798347393:
+    #     return
+    # emote :P
     loser = imports.discord.utils.get(bot.emojis, name='pepeLoser')
 
+    # message and args
+    msg = message.content
+    args = msg.split(' ')
+    user_id = message.author.id
+
+    # evaluate commands
     if msg == '.test':
         value = eval('cm.' + msg[1:] + '()')
-        await message.channel.send(file=value[0], embed=value[1])
+        await message.reply(file=value[0], embed=value[1])
+    elif len(args) > 1 and msg.startswith('.') and any(word in msg for word in commands):
+        value = eval('cm.' + args[0][1:] + f'({args},{user_id})')
+        await message.reply(embed=value)
     elif msg.startswith('.') and any(word in msg for word in commands):
-        value = eval('cm.' + msg[1:] + '()')
-        await message.channel.send(embed=value)
+        value = eval('cm.' + args[0][1:] + f'({user_id})')
+        await message.reply(embed=value)
     else:
-        await message.channel.send(f"Not a real command {loser} Try .help instead {loser}")
+        await message.reply(f"Not a real command {loser} Try .help instead {loser}")
 
 
 print(f'COMMANDS LIST: {commands}')
