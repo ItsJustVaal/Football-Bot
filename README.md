@@ -1,4 +1,4 @@
-Predictions bot for Futbol
+Discord Predictions bot for Futbol
 
 All commands can by found under commands.py
 
